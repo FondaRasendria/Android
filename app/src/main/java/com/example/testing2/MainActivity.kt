@@ -1,5 +1,6 @@
 package com.example.testing2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var editWidth: EditText
     private lateinit var editHeight: EditText
     private lateinit var btnCalculate: Button
+    private lateinit var btnPindah: Button
     private lateinit var tvResult: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,9 +27,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         editWidth = findViewById(R.id.edit_width)
         editHeight = findViewById(R.id.edit_height)
         btnCalculate = findViewById(R.id.button_calculate)
+        btnPindah = findViewById(R.id.button_pindah)
         tvResult = findViewById(R.id.tv_result)
 
         btnCalculate.setOnClickListener(this)
+        btnPindah.setOnClickListener(this)
 
         if(savedInstanceState != null){
             val result = savedInstanceState.getString("STATE_RESULT") as String
@@ -80,6 +84,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     tvResult.text = volume.toString()
                 }
             }
+        }
+        else if(view.id == R.id.button_pindah){
+            val moveIntent = Intent(this@MainActivity, MainActivity2::class.java)
+            startActivity(moveIntent)
         }
     }
 
